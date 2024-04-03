@@ -1,0 +1,54 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+.sign-in-background {
+    background-image: url("~assets/images/ui/login-bg.png");
+    background-size: cover;
+}
+.sidebar-background {
+    background-image: url("~assets/images/ui/siderbar-bg.png");
+    background-size: cover;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(249 250 251);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.required {
+    &:after {
+        content: '*';
+        color: red;
+        font-size: 20px;
+        margin-left: 5px;
+    }
+}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color:rgb(66, 134, 244)!important;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:rgb(66, 134, 244)!important;
+    background-color:rgb(66, 134, 244)!important; ;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:rgb(255, 37, 37,.26)!important;
+}
+.mat-snack-bar-container{
+    color: #fff !important;
+}

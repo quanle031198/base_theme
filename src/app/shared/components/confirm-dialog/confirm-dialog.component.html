@@ -1,0 +1,24 @@
+<!--    header-->
+<div class="header border-b flex justify-between items-center pb-3">
+    <div class="text-xl font-bold card-title">
+        {{data?.title || 'Xóa bản ghi'}}
+    </div>
+    <div>
+        <button mat-icon-button class="hover:bg-slate-500" (click)="dialogRef.close()">
+            <mat-icon svgIcon="heroicons_outline:x" title="Edit" class="icon-size-5"></mat-icon>
+        </button>
+    </div>
+</div>
+<!--    content-->
+<div class="content mt-6">
+    <div>{{data?.content || 'Bạn chắc chắn muốn xóa bản ghi?'}}</div>
+</div>
+<!--    footer-->
+<div class="footer mt-6 flex justify-end">
+    <button mat-raised-button class="mr-3" (click)="dialogRef.close()">
+        <span>Hủy bỏ</span>
+    </button>
+    <button mat-raised-button color="primary" class="mr-3" (click)="dialogRef.close('success')">
+        <span>Xác nhận</span>
+    </button>
+</div>

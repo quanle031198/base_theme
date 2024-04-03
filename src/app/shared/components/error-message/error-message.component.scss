@@ -1,0 +1,8 @@
+div {
+  p {
+    display: none;
+    &:first-child {
+      display: block;
+    }
+  }
+}

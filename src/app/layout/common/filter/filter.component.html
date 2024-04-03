@@ -1,0 +1,11 @@
+<div class="bg-white border h-[40px] rounded-[40px] px-4 flex items-center cursor-pointer"
+     #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" (onMenuClose)="onMenuClose()" (onMenuOpen)="onMenuOpen()">
+    <mat-icon [matBadge]="listValidFilter.length" matBadgeSize="small"
+        class="icon-size-5 mr-2" [matBadgeHidden]="listValidFilter.length === 0"
+              [svgIcon]="'heroicons_solid:filter'"></mat-icon>
+
+    <div class="font-medium">Filter</div>
+</div>
+<mat-menu #menu="matMenu" class="filter-menu">
+    <app-filter-dialog *ngIf="isMenuOpen" [dataSource]="dataSource" [(filter)]="filter" (filterChange)="onFilterChange($event)"></app-filter-dialog>
+</mat-menu>

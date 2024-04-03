@@ -1,0 +1,81 @@
+<div class="w-[600px] p-4" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+    <div class="flex w-full gap-4" *ngFor="let filter of filters; index as i">
+        <div class="filter flex-1">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Filter" [(ngModel)]="filter.filter"
+                            (ngModelChange)="changeTypeFilter($event, filter)">
+                    <mat-option *ngFor="let item of dataSource" [value]="item.field">{{item.title}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="filter flex-1">
+            <div [ngSwitch]="filter.type">
+                <div *ngSwitchCase="'select'">
+                    <mat-form-field class="w-full">
+                        <mat-select placeholder="Filter by" [(ngModel)]="filter.filterBy">
+                            <mat-option *ngFor="let item of filter.data" [value]="item.value">{{item.label}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'text'">
+                    <mat-form-field class="w-full">
+                        <input matInput placeholder="Filter by" [(ngModel)]="filter.filterBy">
+                    </mat-form-field>
+                </div>
+                <div *ngSwitchCase="'rangePicker'">
+                    <mat-form-field class="w-full">
+                        <mat-date-range-input [rangePicker]="picker">
+                            <input matStartDate [(ngModel)]="filter.filterBy && filter.filterBy.start" placeholder="Start date">
+                            <input matEndDate  [(ngModel)]="filter.filterBy && filter.filterBy.end" placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+                </div>
+                <div *ngSwitchDefault></div>
+            </div>
+        </div>
+        <div class="clear">
+            <button
+                (click)="deleteFilter(i)"
+                class="fuse-mat-button"
+                mat-icon-button
+            >
+                <mat-icon
+                    class="icon-size-5"
+                    [svgIcon]="'heroicons_solid:trash'"></mat-icon>
+            </button>
+
+        </div>
+    </div>
+    <div class="w-full mb-4">
+        <div class="flex border-b border-primary text-primary pb-1">
+            <div class="flex items-center cursor-pointer" (click)="addFilter()">
+                <mat-icon
+                    class="icon-size-7 mr-2 text-primary"
+                    [svgIcon]="'heroicons_solid:plus'"></mat-icon>
+                <span class="font-medium">Add Filter</span>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-between">
+        <button
+            class="fuse-mat-button"
+            mat-flat-button
+            [color]="'primary'"
+            (click)="apply()"
+        >
+            <span>Apply</span>
+        </button>
+        <button
+            class="fuse-mat-button"
+            mat-flat-button
+            (click)="clearAllFilter()"
+        >
+            <mat-icon
+                class="icon-size-5 mr-2 text-primary"
+                [svgIcon]="'heroicons_solid:x'"></mat-icon>
+            <span>Clear all</span>
+        </button>
+    </div>
+</div>

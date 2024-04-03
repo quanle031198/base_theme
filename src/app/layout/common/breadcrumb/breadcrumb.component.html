@@ -1,0 +1,14 @@
+<div class="breadcrums ml-5 flex items-center">
+    <ng-container *ngFor="let item of breadcrumbs; index as i">
+        <div class="flex items-center">
+            <mat-icon *ngIf="i !== 0" class="icon-size-4"  svgIcon="heroicons_outline:chevron-double-right"></mat-icon>
+            <span class="px-3"
+                  [class.cursor-pointer]="item.url"
+                  [class.text-lime-600]="i === breadcrumbs.length - 1"
+                  (click)="navigateToUrl(item.url)"
+            >
+            {{item?.label}}
+            </span>
+        </div>
+    </ng-container>
+</div>

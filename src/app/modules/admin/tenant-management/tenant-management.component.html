@@ -1,0 +1,68 @@
+<ng-container *transloco="let t">
+    <div class="w-full p-4">
+        <div>
+            <app-page-header
+                [title]="t('tenant.tenantManagement')"
+                description="description"
+                (onCreate)="openCreatePopup()"
+                [filterDataSource]="filterDataSource"
+                [(filter)]="filter" (filterChange)="handleFilter($event)">
+            </app-page-header>
+        </div>
+        <div class="mt-4 rounded-xl overflow-hidden">
+            <app-data-table
+                [columns]="tableHeader"
+                [paginate]="true"
+                [limit]="paginate.pageSize"
+                [count]="paginate.size"
+                [(sort)]="sort"
+                [rowTemplate]="rowTemplate"
+                (sortChange)="onSortChange($event)"
+                (pageChange)="onPageChange($event)"
+                [rows]="listTenant"></app-data-table>
+        </div>
+    </div>
+
+    <ng-template #rowTemplate let-row="row" let-column="column">
+        <ng-container [ngSwitch]="column.columnDef">
+            <ng-container *ngSwitchCase="'stt'">
+                <div>{{getRowIndex(row) + 1}}</div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'status'">
+                <div class="flex">
+                    <div class="px-4 rounded-3xl text-white h-[25px]" [class.bg-primary]="!row.status"
+                         [class.bg-lime-500]="row.status">{{row.status === 0 ? "Locked" : "Active"}}</div>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'action'">
+                <div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon [svgIcon]="'heroicons_outline:dots-horizontal'"></mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon class="icon-size-4" [svgIcon]="'mat_outline:edit'"></mat-icon>
+                            <span>Edit</span>
+                        </button>
+                        <button mat-menu-item *ngIf="row.status === 0">
+                            <mat-icon class="icon-size-4" [svgIcon]="'heroicons_solid:lock-open'"></mat-icon>
+                            <span>Unlock</span>
+                        </button>
+                        <button mat-menu-item *ngIf="row.status === 1">
+                            <mat-icon class="icon-size-4" [svgIcon]="'heroicons_solid:lock-closed'"></mat-icon>
+                            <span>Lock</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon class="icon-size-4" [svgIcon]="'heroicons_solid:trash'"></mat-icon>
+                            <span>Delete</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+                <div [innerHTML]="row[column.columnDef]"></div>
+            </ng-container>
+        </ng-container>
+    </ng-template>
+
+</ng-container>

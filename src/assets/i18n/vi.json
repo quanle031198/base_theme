@@ -1,0 +1,14 @@
+{
+    "sign-in": "Đăng nhập",
+    "setting": {
+      "user": {
+          "group": "Nhóm",
+          "userList": "Danh sách người dùng",
+          "newGroup": "Nhóm mới",
+          "newUser": "Thêm người dùng"
+      }
+    },
+    "tenant": {
+        "tenantManagement": "Quản lý Tenant"
+    }
+}

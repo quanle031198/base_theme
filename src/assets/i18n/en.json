@@ -1,0 +1,14 @@
+{
+    "sign-in": "Đăng nhập",
+    "setting": {
+        "user": {
+            "group": "Group",
+            "userList": "User list",
+            "newGroup": "New Group",
+            "newUser": "New User"
+        }
+    },
+    "tenant": {
+        "tenantManagement": "Tenant Management"
+    }
+}

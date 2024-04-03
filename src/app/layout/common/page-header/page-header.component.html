@@ -1,0 +1,36 @@
+<div class="w-full flex">
+    <div class="page-name flex-1">
+        <div class="text-4xl font-medium">
+            {{title}}
+        </div>
+        <div>
+            {{description}}
+        </div>
+    </div>
+    <div class="page-action flex items-center">
+        <div class="search flex items-center mr-4 rounded-input">
+            <mat-form-field class="w-80">
+                <mat-icon
+                    class="icon-size-5 mr-2"
+                    [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                <input matInput placeholder="Search">
+            </mat-form-field>
+        </div>
+        <div class="filter flex items-center mr-4">
+            <app-filter [dataSource]="filterDataSource" [(filter)]="filter" (filterChange)="filterChange.emit($event)"></app-filter>
+        </div>
+        <div class="create flex items-center">
+            <button
+                class="fuse-mat-button"
+                mat-flat-button
+                [color]="'primary'"
+                (click)="onCreate.emit()"
+                >
+                <mat-icon
+                    class="icon-size-8"
+                    [svgIcon]="'heroicons_solid:plus'"></mat-icon>
+                <span>Create</span>
+            </button>
+        </div>
+    </div>
+</div>
